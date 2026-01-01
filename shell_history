@@ -1,0 +1,845 @@
+ll -g
+ls -g
+cd commvault
+cd Base
+commvault status
+commvault start
+cd /tmp
+rm -rf UnixNew
+df -g
+cd /opt
+cd commvault
+ls -g
+cd commvault
+commvault status
+cd Base
+commvault start
+cd Temp
+cd ..
+cd ..
+cd CVBLK
+cd ..
+cd ..
+cd Unix
+exit
+whoami
+whoami
+netstat -tunlp | grep 21
+lsof -i :21
+netstat -an | grep LISTEN | grep 21
+uptime
+hostname
+date
+telnet uskoda01 21
+passwd root
+uptime
+date
+df -g
+cd /opt/commvault
+ls -ltr
+cd /opt/commvault
+ls -ltr
+uname -a
+cd commvault
+ps -ef |grep -i comm
+df -g
+service status commvault
+ps -ef | grep commvault
+df -g
+cd /op
+df -g
+commvault status
+commvault -all status
+ps -ef | grep -i commvault
+ps -ef | grep -i cvd
+cd /opt/commvault
+cd Unix
+cd ..
+cd commvault
+./cvpkgrm
+cd ..
+rm commvault
+cd Unix
+./cvpkgadd
+cd /var/log
+df -g
+commvault status
+df -g
+exit
+whoami
+cat /etc/passwd | grep -i p_
+cd /opt/commvault
+commvault list
+commvault status
+exit
+df -h
+df -k
+df -k
+date
+proj essn
+sudo su -
+whoami
+cd /0b/opt/essn
+whoamii
+whoami
+ls -lrt
+cd /Mail
+ls -lrt
+cd /
+find mailrc
+find .mailrc
+man find
+whoami
+find -name mail.rc
+man find
+  pwd
+find / -name .mailrc -print
+cd /0b/opt/essn/
+ls -lrt | grep -i .mail*
+cat .mailrc
+ls -lrt |grep -i .mailrc
+cp -pr .mailrc .mail.rc_bkp301025
+ls -lrt |grep -i .mailrc
+ls -lrt |grep -i .mailrc*
+cd /tmp
+cd -
+ls -lrt |grep -i .mailrc
+cp .mailrc /tmp/.mailrc_bkp3010
+cd /tmp
+ls -lrt |grep -i .mail
+cd -
+ls -lrt | grep -i mailrc
+cat .mailrc
+vi .mailrc
+vi .mailrc
+vi .mailrc
+cat .mailrc
+cat .mailrc
+date
+df -t
+cd /0b/opt/
+ls -lrt
+df -t
+hostname
+cd /0b/opt/
+ls -lrt
+df -g
+cd /0b/opt
+du -sh *
+du -sg *
+cd essn
+du -sk * |sort -rn | head
+cd rose
+du -sk * |sort -rn | head
+cd prod
+du -sk * |sort -rn | head
+ls -ltr
+du -sk * |sort -rn | head
+cd repl
+du -sk * |sort -rn | head
+cd log
+ls -ltr
+fuser *
+lsvg
+df -g
+lsvl
+lsvg
+lslv datavg
+lvdisplay
+lsvg -l
+lsvg
+lsvg -l
+lsvg -l datavg
+vgdisplay datavg
+lsvg datavg
+df -g
+chfs -a size=+1G /0b/opt
+df -g /0b/opt
+lslv -l fslv00
+lslv fslv00
+extendlv fslv00 8
+extendlv fslv00 58
+chlv -x 58 fslv00
+lslv fslv00
+chfs -a size=+1G /0b/opt
+df -g /0b/opt
+chfs -a size=+1G /1a/data
+df -g /1a/data
+df -g
+lsvg
+lsvg -l rootvg
+lsvg -l datavg
+df -g /0b/opt /1a/data
+history
+df -g
+cat /etc/filesystems
+cd /opt/commvault
+mount
+showmount -e 10.207.137.21
+cd /etc
+vi /etc/filesystems
+cat /etc/filesystems
+exit
+ps -ef | grep -i zabbix
+commvault list
+commvault stop
+commvault start
+commvault list
+ps -rf | grep -i zabbix
+ps -ef | grep -i zabbix
+ps -ef | grep zabbix
+ps -ef | grep zabbix
+ps -ef | grep commvault
+exit
+sudo su -
+proj essn
+df -g
+proj essn
+proj essn
+cd /0b/opt
+ls -l
+cd essn
+ls -l
+cd ..
+ls -l
+cd v_rebill
+ls -l
+cd ..
+proj essn
+du -g
+ps -ef
+crontab -l | grep -i ingress
+crontab -l | grep -i sdos_unverified
+proj essn
+ls -l
+find  / -name Mail
+cd /0b/opt/essn/Mail
+ls -l
+cd /
+ls -l
+d Mail
+cd Mail
+ls -l
+find / -name *.mailrc
+cd /0b/opt/essn
+ls -l
+cat /0b/opt/essn/.mailrc
+history
+cd /0b/opt/essn
+ls -l
+cp -r .mailrc .mailrc_bkp05112025
+ls -l
+vi .mailrc
+cat .mailrc
+cat /etc/passwd
+exit
+df -h
+df -k
+cd /essn/rose/prod/clone/script/clone.pl
+cd /essn/rose/prod/clone/script
+cat clone.pl
+cat -n clone.pl
+date
+igstatus
+ingstatus
+exit
+uptime
+hostanem
+hostname
+ps -ef | grep ingress
+ps -ef | grep -i ingress
+proj essn
+whoami
+find / -name *ingress
+find / -name *ingres
+id bpguffey
+cd /0b/opt/essn/rose/prod/common/bin/
+ls -ltr
+cat set-ingres
+ingstatus
+cd /0b/opt/essn/rose/prod/rosserv/bin/
+ls -ltr
+cat set-ingres
+cat /0b/opt/essn/rose/dev1/common/bin/set-ingres
+cat /0b/opt/essn/rose/dev0/common/bin/set-ingres
+cat /0b/opt/essn/rose/dev0/rosserv/bin/set-ingres
+cd /0d/opt/
+ls -ltr
+cd ingres
+ls -ltr
+cat check_ingres
+df -h
+df -k
+cd /1a/data
+ls -ltr
+cd ingres
+ls -ltr
+cat /0d/opt/ingres/check_ingres
+cat /0d/opt/ingres/bin/ingres
+uptime
+proj essn
+proj ingres
+id ingres
+id essn
+ls -l
+cat healthchhealthcheck.sh
+cat healthcheck.sh
+./healthcheck.sh
+cd /usr/sbin/cron
+cd /usr/sbin
+ls -l
+history
+ps -ef | grep ingres
+uptime
+df -h
+df -g
+history |grep -i mailrc
+find / -name mailrc
+uname -a
+history |grep -i passwd
+ls -ltr /essn/rose/prod/clone/script/clone.pl
+file /essn/rose/prod/clone/script/clone.pl
+more /essn/rose/prod/clone/script/clone.pl
+ps -ef |grep -i pmon
+ps -ef |grep -i java
+df -g
+fin / -name clone
+find / -name clone
+cd /0b/opt/essn/rose/prod/clone
+cd stage
+cd ../script
+more clonereport.sh
+find / -name ros
+cd /0b/opt/essn/ros
+cd prod
+ps -ef |grep -i sql
+ls l-tr
+ls -ltr
+cd sql
+more chk_repl.sql
+uptime
+passwd
+ps -elf
+cd $II_SYSTEM
+ls -l
+cd ingres
+ls -l
+cat bill.txt
+ls -l
+cat dead.letter
+cd log
+ls -l
+less ingres_log
+tail ingres_log
+file ingress_log
+file ingres_log
+cd ..
+cd files
+cd ..
+cd files
+ls -l errlog*
+more errlog.log
+ls -l iiacp*
+tail iiacp.log
+uptiome
+uptime
+df -h
+iimonitor
+iinamu
+echo $II_SYSTEM
+ingprenv
+ps -ef | grep ingres
+ps -ef | grep ingres
+cd /0d
+cd opt
+cd ingres
+cd ..
+cd kil
+cd kle
+ls -l
+cd ingres
+ls -l
+ls -ltr
+cd files
+ls -ltr
+tail errlog.log
+clear
+clear
+man clear
+ps -elf | grep ingres
+ps -e | wc -l
+cd /essn
+cat ./mailrc
+cat .mailrc
+cat crontab.prd
+cd /essn/rose/prod/sdo/script
+ls -l
+cat check_sdos_unverified.sh
+cat check_sdos_unverified.sql
+sql ros check_sdos_unverified.sql
+sql ros <check_sdos_unverified.sql
+ls -l
+cat check_sdos_unferified.dat
+file check_sdos_unverified.dat
+cat check_sdos_unverified.dat
+logstat
+logstat | grep RECOVER
+logsta | grep LOGFULL
+logstat | grep LOGFULL
+history
+!1571
+logstat | grep LOGFULL
+clear
+logstat | head
+iimonitor
+iimonitor ros
+iimonitor uskoda01
+su ingres
+ingstop
+cd /0d/opt/ingres
+cd files
+ls -ltr
+tail errlog.log
+su ingres
+cd /root
+cat .profile
+cat .sh_history
+which opcagt
+infodb
+tm ros
+ingstop
+ps -elf | grep ingres
+load
+cd /0d/opt/ingres/files
+tail errlog.log
+ls -l
+more config.log
+date
+ls -l
+file startup
+more vt100i.map
+more errlog.log
+ps -elf | grep ingres
+proj essn
+exit
+ipm-s
+ipm -s
+ipm -s
+proj essn
+cd 0b/opt/essn
+cat .mailrc
+vi .mailrc
+cat crontab
+ls -l
+cat crontab.prd
+proj essn
+su ingres
+ps -elf | grep ingres
+ingstatus
+whoami
+infodb
+logstat -header
+which infodb
+which ingstop
+which ingstart
+which ingstatus
+logstat -header
+which ingstart
+cd /0d/opt/ingres/utility
+proj essn
+proj essn
+proj essn
+ps -elf | grep comm
+cd /1a/data
+ls -l
+du s backup
+du backup
+cd backup
+cd ..
+cd ingres
+du *
+cd ckp/default
+cd ros
+ls -l
+ls -l
+ls -l c2152*
+rm c2152*
+ls -l
+cd /1a/data
+cd ingress
+cd ingres
+cd dmp
+cd default
+cd ros
+ls -l
+alterdb
+cd ../../chp/default/ros
+cd ..
+cd ..
+cd ..
+cd ckp/default
+cd ros
+ls -l
+alterdb ros -delete_oldest_ckp
+alterdb ros -delete_invalid_ckp
+ps -elf | grep ckp
+more /0d/opt/ingres/dba/bin/ckpdb_disk.ksh
+cd /0d/opt/ingres/dba/bin/
+./ingbdf.ksh
+more ingbdf.ksh
+more ckpdb_disk.ksh
+crontab -l
+proj essn
+more /essn/rose/prod/dba/log/dbmaint_cron_log
+./ckpdb_disk.ksh
+./ckpdb_disk.ksh ros ingres N
+more ../../files/iiacp.log
+history
+./ckpdb_disk.ksh ros ingres Y
+ps -elf | grep chk
+ckpdb -d ros
+cd /1a/data/ingres/
+cd jnl
+cd default
+du *
+cd ros
+ls -l
+ls -l j00137*
+rm j00137*
+ls -l
+cd ..
+du *
+cd v_revill
+cd v_rebill
+ls -l
+cd ..
+cd ..
+cd ..
+cd dmp
+cd default/ros
+ls -l
+ls -ltr
+man du
+du -m
+cd ..
+du =m
+du -m
+cd ..
+cd .
+cd ..
+cd ..
+du -m
+cd ingres
+cd ckp
+cd default
+du -m
+cd ros
+ls -l
+ls -ltr
+cat upl.sql
+ls -lm
+ls -ltr
+ls c2*
+ls -l c2*
+rm c2*
+ls -l c3*
+rm c3*
+ls -l
+ls -l c4*
+rm c4*
+ls -l
+clear
+cd /0b/opt
+ls -l
+du -mm
+clear
+du -m
+cd /0d/opt/ingres/dba/bin/
+./ckpdb_disk.ksh ros ingres N
+more ../../files/iiacp.log
+ingstart -dmfacp
+./ckpdb_disk.ksh ros ingres N
+cd /1a/data
+cd ingres
+cd ckp
+cd default/ros
+ls -l
+cd ..
+ls -l *
+ls -l
+df -g
+find / -name clone*
+cd /0b/opt/essn/rose/prod/clone/script
+ls -l
+cat clonereport.rep
+cat missed.rep
+uptime
+exit
+cat /etc/passwd
+exit
+passwd p_aixadm
+exit
+exit
+history
+df -g
+uname -a
+uname -r
+oslevel -s
+oslevel
+cd /tmp
+cd /etc/zabbix
+grep -i /etc/password
+grep -i /etc/passwd
+cd /etc
+cat passwd | more
+tail -10 /etc/passwd
+history
+id zabbix
+useradd -c "zabbix-user" -d /home/zabbix -m zabbix
+id zabbix
+passwd zabbix
+id zabbix
+tail -10 /etc/passwd
+tail -10 /etc/sudoers
+cp -p /etc/sudoers /etc/sudoers_bkp_19112025
+vi /etc/sudoers
+tail -10 /etc/sudoers
+exit
+su - zabbix
+id zabbix
+history | grep -i strat
+ history | grep -i start
+whoami
+errpt
+history 500
+ip a
+ipaddr
+ip ad
+cd /var/log
+ls -ltr
+tail -f 500 syslog
+cat syslog
+uptime
+ps -aux
+errpt
+man errpt
+errpt
+errpt -a
+errpt
+ifconfig -a
+cd /var/adm
+cd ras
+ls -ltr
+cat errlog
+ls -ltr
+smit
+ingstatus
+  cd /0d/opt/ingres/dba/bin
+ls -lt
+df -h
+df -k
+smit
+exit
+df -k
+ifconfig -
+ifconfig -a
+errpt
+smit
+smit
+df -g
+proj essn
+cd /etc/zabbix
+cd /var/log/zabbix
+hsitory | tail -1000
+history | tail -2000
+fc -l 100 600
+ fc -l 80 700
+df -g
+id zabbix
+passwd zabbix
+find / -name *.mailrc
+cd /0b/opt/essn/
+ls -lt
+nano  .mailrc
+vi  .mailrc
+vi  .mailrc_bkp05112025
+vi .mail.rc_bkp301025
+vi .mailrc
+cp .mailrc ./.mailrc_bkp24112025
+ls -lt
+cat .mailrc_bkp24112025
+:quit!
+exit
+ls -ltr /etc/ssh/sshd_config
+ls -ltr /etc/ssh/sshd_config*
+more ls -ltr /etc/ssh/sshd_config
+more /etc/ssh/sshd_config
+find / -name *.mailrc
+cd /0b/opt/essn
+ls -lt
+id zabbix
+cat /0b/opt/essn/.mailrc
+vi .mailrc
+ls -lt
+vi .mailrc_bkp24112025
+cat .mailrc_bkp24112025
+vi .mailrc_bkp24112025
+exit
+find / -name *.mailrc
+history
+ cd /0b/opt/essn
+ls -lt
+vi .mailrc
+cat .mailrc
+exit
+whoami
+history
+crontab -l
+exit
+df -g
+whoami
+proj essn
+whoami
+proj essn
+exit
+ps -ef | grep final
+exit
+fina / -name .mailrc
+find / -name .mailrc
+cd /0b/opt/essn/.mailrc
+cd /0b/opt/essn
+ls-lt
+ls -lt
+whoami
+topas
+exit
+topas
+netstat -a 44.250.100.185
+errpt
+proj essn
+hostname
+netstat uskoda01
+netstat -n 144.250.100.185
+who -b
+uptime
+errpt -a
+whoami
+history
+history more
+fc -l 600 900
+ cd /0b/opt/essn
+ls -lt
+cat  .mailrc
+clear
+exit
+history
+ cd /0b/opt/essn
+ls -lt
+cat .mailrc
+ls -lt
+cat .mailrc_bkp24112025
+ls -lt
+cp .mailrc ./.mailrc_bkp_01122025
+ls -lt
+cat .mailrc_bkp_01122025
+vi .mailrc_bkp_01122025
+vi .mailrc_bkp_01122025
+vi .mailrc_bkp_01122025
+wc -l .mailrc_bkp_01122025
+vi .mailrc_bkp_01122025
+exit
+exit
+ps -ef |grep zabbix
+hostname
+cat /etc/ssh/ssh_config
+rpm -qa |grep libssh
+yum check-update libssh
+ps -ef |grep libssh
+cat /etc/redhat-rele
+cat /etc/redhat-release
+df -Th
+hostname
+lslpp -L | grep -i ssh
+cd /etc/ssh
+more ssh_config
+vi /etc/ssh/sshd_config
+statussrc -s sshd
+stopsrc -s sshd
+startsrc -s sshd
+ps -ef |grep -i sshd
+vi /etc/ssh/sshd_config
+stopsrc -s sshd
+startsrc -s sshd
+topas
+ps -ef |grep -i ingre
+clear
+df -Th
+df -t
+whoami
+exit
+df -hT
+df -g
+history
+history | grep useradd
+cat /etc/passwd | tail
+history
+fc -l 700 1491
+topas
+df -g
+df -ag
+du -g
+tail -f history
+ls -lt
+tail -f .sh_history
+man /which
+exit
+uptime
+errpt -a
+tail -f errpt
+errpt p-f
+errpt -f
+ls -lt
+find / -name *mail
+clear
+uptime
+date
+hostname
+ls -lt
+tail -f dead.letter
+tail -1000 dead.letter
+uptime
+cd /etc/ssh
+ls -ltr
+more sshd_config
+df -g
+df -gt
+historyt
+history
+topas
+errpt
+errpt -a
+errpt -a BA431EB7|more
+proj essn
+fc -l
+fc -l 300 800
+fc -l 300 8000
+fc -l 300 8000 |grep -i cp
+uname -a
+su - ingres
+exit
+history
+su -ingres
+su ingres
+whoami
+fc -l 1 2000
+clear
+fc -l 100 2000
+echo $HISTSIZE
+echo $HISTFILE
+ulimit -a
+strings /.sh_history | pg
+ls -lt
+cd /
+ls -lt
+ls -lt
+strings .sh_history > shell_history
