@@ -1,0 +1,115 @@
+ Name:  ROS/ESSN crontab                                                  #
+# Server:  uskola01.northamerica.delphiauto.net                            #
+#--------------------------------------------------------------------------#
+# Modification Log:                                                        #
+# 2006-02-02  Bill Guffey  Original Release                                #
+# 2007-05-23  Bill Guffey  Changed non_gm_claim to run on the last day     #
+#                          of the month.                                   #
+#                                                                          #
+#--------------------------------------------------------------------------#
+############################################################################
+#-Database maintenance                                                     #
+############################################################################
+00 06 * * 6 /essn/rose/prod/dba/script/dbmaint.sh ros /essn/rose/prod >> /essn/rose/prod/dba/log/dbmaint_cron_log 2>&1
+############################################################################
+#-More than once a day jobs                                                #
+############################################################################
+#--------------------------------------------------------------------------#
+#-SPO Schedule - Check every 15 minutes -----------------------------------#
+#--------------------------------------------------------------------------#
+00,15,30,45 * * * 0,1 (cd /essn/rose/prod/spos/script; /usr/bin/perl spos.pl ros /essn/rose/prod ) >> /essn/rose/prod/spos/log/sposlog.log 2>&1
+#--------------------------------------------------------------------------#
+#-Check for new shipment files to load and process ------------------------#
+#--------------------------------------------------------------------------#
+####32 5-23 * * 1-5 (ksh /essn/.profile; cd /essn/rose/prod/repl/script; PATH=$PATH:/usr/bin:/0c/opt/admin/tools/bin ./cdb_load.sh ros prod /essn/rose/prod) >>/essn/rose/prod/repl/log/cdb_load.log 2>&1
+05,25,45 5-23 * * 1-5 (ksh /essn/.profile; cd /essn/rose/prod/repl/script; PATH=$PATH:/usr/bin:/0c/opt/admin/tools/bin ./cdb_load.sh ros prod /essn/rose/prod) >>/essn/rose/prod/repl/log/cdb_load.log 2>&1
+#--------------------------------------------------------------------------#
+#-GM PT/HVAC Data to SAP
+#--------------------------------------------------------------------------#
+00 17,18,19 * * 1-6 (cd /essn/rose/prod/apmt/script; ./apmt_auto.pl ros /essn/rose/prod) >> /essn/rose/prod/apmt/log/apmt.log 2>&1
+#--------------------------------------------------------------------------#
+# SDO Processing
+#--------------------------------------------------------------------------#
+05,17,29,41,53 8-22 * * 1-5 (cd /essn/rose/prod/sdo/script; sh check_sdos_unverified.sh) > /essn/rose/prod/sdo/log/check_sdos_unverified.log 2>&1
+############################################################################
+# Daily jobs                                                               #
+############################################################################
+#--------------------------------------------------------------------------#
+#-Replicaiton 12:20 AM - It also initializes the Clone Process ------------#
+#--------------------------------------------------------------------------#
+10 00 * * * /essn/rose/prod/repl/script/repl_daily.sh >> /essn/rose/prod/repl/log/repl_daily.log 2>&1
+#--------------------------------------------------------------------------#
+#-Check for site error logs------------------------------------------------#
+#--------------------------------------------------------------------------#
+45 06 * * * (cd /essn/rose/prod/common/script; /usr/bin/perl check_site_error.pl ros /essn/rose/prod) > /essn/rose/prod/common/log/check_site_error.log 2>&1
+#--------------------------------------------------------------------------#
+#-Monitor the replication and clone site.dat files - for commented out sites
+#--------------------------------------------------------------------------#
+15 15 * * * (ksh /essn/.profile; /essn/rose/prod/verify/script/dcheck.pl ros /essn/rose/prod) > /essn/rose/prod/verify/log/dcheck.log 2>&1
+00 16 * * * (ksh /essn/.profile; /essn/rose/prod/verify/script/dcheck.pl ros /essn/rose/prod) > /essn/rose/prod/verify/log/dcheck.log 2>&1
+#--------------------------------------------------------------------------#
+#-Send daily e-mail regarding replication and clone status
+#--------------------------------------------------------------------------#
+00 08 * * * (cd /essn/rose/prod/verify/script; /usr/bin/perl process.pl ros /essn/rose/prod) > /essn/rose/prod/verify/log/process.log 2>&1
+#--------------------------------------------------------------------------#
+#-Daily cleanup script
+#--------------------------------------------------------------------------#
+15 07 * * * (cd /essn/rose/prod/common/script; ./cleanup.pl /essn/rose/prod) >> /essn/rose/prod/common/log/cleanup.log 2>&1
+#--------------------------------------------------------------------------#
+#-Check for site error files
+#--------------------------------------------------------------------------#
+#45 06 * * * (cd /essn/rose/prod/verify/script; ./check_site_error.pl ros /essn/rose/prod) >> /essn/rose/prod/verify/log/check_site_error.log 2>&1
+#--------------------------------------------------------------------------#
+#-Clone Reimbursement
+#--------------------------------------------------------------------------#
+00 21 * * * (cd /essn/rose/prod/reimb/script; ./clone_reimb.pl ros /essn/rose prod) >> /essn/rose/prod/reimb/log/clone_reimb.log 2>&1
+#--------------------------------------------------------------------------#
+#-Check disk space on the server
+#--------------------------------------------------------------------------#
+00 23 * * * (ksh /essn/.profile; /essn/rose/prod/verify/script/dused.pl /essn/rose/prod) > /essn/rose/prod/verify/log/dused.log 2>&1
+#--------------------------------------------------------------------------#
+#-Check to see how many Ingres servers are running (DBMS servers)
+#--------------------------------------------------------------------------#
+00 23 * * * (ksh /essn/.profile; /essn/rose/prod/verify/script/dservers.pl /essn/rose/prod) > /essn/rose/prod/verify/log/dservers.log 2>&1
+############################################################################
+# Weekly jobs                                                              #
+############################################################################
+#--------------------------------------------------------------------------#
+#-Piece Part Pricing Update
+#--------------------------------------------------------------------------#
+30 17,19,21 * * 5 (ksh /essn/.profile; cd /essn/rose/prod/ppu/script; /usr/bin/perl rose_ppu.pl ros /essn/rose/prod) >> /essn/rose/prod/ppu/log/rose_ppu.log 2>&1
+############################################################################
+# Monthly jobs                                                             #
+############################################################################
+#--------------------------------------------------------------------------#
+#-Non-GM Claim data - sending to SAP for billing
+#--------------------------------------------------------------------------#
+30 04 * * * (cd /essn/rose/prod/apmt/script; /usr/bin/perl non_gm_claim.pl ros /essn/rose/prod prod) > /essn/rose/prod/apmt/log/non_gm_claim.log 2>&1
+#35 06 * * * (cd /essn/rose/prod/apmt/script; /usr/bin/perl tnon_gm_claim.pl ros /essn/rose/prod prod) > /essn/rose/prod/apmt/log/tnon_gm_claim.log 2>&1
+#
+# NOTE:  The following job needs to be scheduled after the non_gm_claim job.
+#
+00 05 * * * (cd /essn/rose/adhoc/sap/sql; sql ros < grantSAPNonGMClaimTmp.sql) > /essn/rose/adhoc/sap/log/grantSAPNonGMClaimTmp.log 2>&1
+#--------------------------------------------------------------------------#
+#-Dealer Update
+#--------------------------------------------------------------------------#
+15 00 * * * (cd /essn/rose/prod/dealer/script; ./update_dealer.pl) >> /essn/rose/prod/dealer/log/update_dealer.log 2>&1
+#--------------------------------------------------------------------------#
+#-Compress monthly Vendor Rebill export
+#--------------------------------------------------------------------------#
+30 19 12 * * /usr/bin/gzip /essn/rose/prod/vendor/data/ros*.??? > /essn/rose/prod/vendor/log/compress.log 2>&1
+#--------------------------------------------------------------------------#
+#-Archive central database
+#--------------------------------------------------------------------------#
+05 05 10 * * (cd /essn/rose/prod/archive/script; ./archive_to_h.sh ros /essn/rose/prod) > /essn/rose/prod/archive/log/archive_to_h.log 2>&1
+#--------------------------------------------------------------------------#
+#-Clone central database archive data to the affected sites
+#--------------------------------------------------------------------------#
+55 16 * * * (cd /essn/rose/prod/archive/script; ./clone_archive.pl ros /essn/rose/prod) > /essn/rose/prod/archive/log/clone_archive.log 2>&1
+#---For  Dan---------------------------------------------------------------#
+#Commented by Murali as per Dan Noland  email Dated 11/12/2008
+###05 08 * * * (cd  /essn/rose/prod/repl/script; mail -s "Summary of ROS Daily Processes" dan < replreport.rep)
+05 05 * * * (cd  /essn/rose/prod/apmt/bin; ./tempsdo_ship ros) >> /essn/rose/prod/apmt/log/tempsdo_ship.log 2>&1
+#45 05 14 * * (cd /essn/rose/prod/archive/script; ./archive_to_h.sh ros /essn/rose/prod) > /essn/rose/prod/archive/log/archive_to_h.log 2>&1
+#18 07 20 * * (cd /essn/rose/prod/archive/script; ./copy_to_cd.sh) > /essn/rose/prod/archive/log/copy_to_cd_cron.log 2>&1
+#40 05 24 * * (cd /essn/rose/prod/archive/bin; ./delete_from_h ros ) >> /essn/rose/prod/archive/log/delete_from_h.log 2>&1
