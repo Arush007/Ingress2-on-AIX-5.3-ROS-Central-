@@ -1,0 +1,169 @@
+REPLICATION PROCESS ON CENTRAL SERVER 
+
+1. Start the replication process by running the shell script repl_daily.sh using the crontab  
+
+10 00 * * * /essn/rose/prod/repl/script/repl_daily.sh >> /essn/rose/prod/repl/log/repl_daily.log 2>&1 
+
+ 
+
+ 
+
+2. repl_daily.sh scripts calls replicate.pl for replication of data from sites to central server 
+
+/usr/bin/perl /essn/rose/prod/repl/script/replicate.pl ros /essn/rose/prod 4 >> /essn/rose/prod/repl/log/replicate.log 2>&1 
+
+ 
+
+3. Following processes will be complete as part of replicate.pl script 
+
+ 
+
+3a. Setup the variables 
+
+ 
+
+3b. Get the list of tables for which replication process runs 
+
+############### begin list 
+
+claim 
+
+claim_bulletin 
+
+claim_charges 
+
+claim_complaint 
+
+claim_cur_status 
+
+claim_deleted 
+
+claim_euro 
+
+claim_fail_code 
+
+claim_license_num 
+
+claim_link 
+
+claim_mfg_date 
+
+claim_non_reman 
+
+claim_operation 
+
+claim_promise 
+
+claim_scrap 
+
+claim_trouble 
+
+inventory 
+
+inventory_owed 
+
+pc_info 
+
+piece_part_shipment 
+
+piece_part_ship_detail 
+
+pre_exc_order 
+
+pre_exc_shipment 
+
+receipt_cust 
+
+receipt_cust_xfer 
+
+receipt_dealer 
+
+receipt_detail 
+
+receipt_detail_xfer 
+
+sdo_detail 
+
+shipment 
+
+shipment_detail 
+
+site_parameters 
+
+spec_proj_site_data 
+
+userid 
+
+userid_function_cde 
+
+############### end list 
+
+ 
+
+ 
+
+3c. Get the list of sites from where Central server will get the data 
+
+#GTE uskoaa05 015 030 /essn/gte 
+
+PRI uskoaa05 015 030 /essn/pri 
+
+#AEL uskoaa05 015 030 /essn/ael 
+
+AJR uskoaa05 080 060 /essn/ajr 
+
+R21 uskoaa05 070 060 /essn/r21 
+
+AER uskoaa05 215 005 /essn/aer 
+
+#R04 uskoaa05 218 004 /essn/r04 
+
+ISS uskoaa05 195 030 /essn/iss 
+
+MEC uskoaa05 045 060 /essn/mec 
+
+SPC uskoaa05 090 060 /essn/spc 
+
+SPD uskoaa05 195 030 /essn/spd 
+
+SSI uskoaa05 135 030 /essn/ssi 
+
+TCI uskoaa05 045 060 /essn/tci 
+
+TCO uskoaa05 045 060 /essn/tco 
+
+SUZ uskoaa05 015 030 /essn/suz 
+
+ 
+
+ 
+
+3d. Runs the subroutine  &pull_data to get the files from each site to Central server /essn/rose/prod/repl/data directory 
+
+ 
+
+3e. Run the subroutine &process_data to process the data  
+
+ 
+
+     3e.1. Process_data subroutine calls perl program load.pl $SITE $DB $BASE 
+
+  
+
+     3e.2. &get_date --Get the date information 
+
+     3e.3. &uncompress_files --Unzip the files received from Site server /essn/rose/prod/repl/data to /essn/rose/prod/repl/stage 
+
+     3e.4. &create_sql --Create the sql script to load the data from file in /essn/rose/prod/repl/stage directory to _rep tables  
+
+     3e.5. &load_tables -- Load the data from file in /essn/rose/prod/repl/stage directory to _rep tables  
+
+     3e.6. &update_tables -- Update the table claim_operation,sdo_detail,shipment tables 
+
+     3e.7. &backup_files -- Backup the data from /essn/rose/prod/repl/stage to /essn/rose/prod/repl/backup directory 
+
+     3e.8. &update_stats -- Update the site_stats table with last run information 
+
+ 
+
+3f. Run the $BASE/repl/script/replreport.sh /essn/rose/prod to verify the replreport. 

@@ -1,0 +1,198 @@
+REPLICATION :- Process where data from site server copied to central server 
+
+1. Repliaction process start by calling unlstart.sh script on Site Server 
+
+30 03 * * 0-6 (cd /essn/aer/repl/script; ./unlstart.sh aer AER /essn/aer) >> /essn/aer/repl/log/unlstart.log 2>&1 
+
+
+2. unlstart.sh script will call the unload.pl perl script 
+
+/usr/bin/perl $BASE/repl/script/unload.pl N $DB $SITE $BASE >> $BASE/repl/log/unload.log 2>&1 
+
+ 
+
+3. unload.pl will perform the following steps 
+
+BASE :- /essn/aer 
+
+DB aer 
+
+site :- AER 
+
+ 
+
+Set the variables 
+
+$PATH   = '/essn/ros/repl' ; 
+
+$CPATH  = '/essn/ros/repl' ; 
+
+$STAGE  = '/stage' ; 
+
+$DATA   = '/data' ; 
+
+$BACK   = '/backup' ; 
+
+$LOGDIR = '/log' ; 
+
+$SOURCE = '/source' ; 
+
+ 
+
+$BIN = '/essn/ros/bin' ; 
+
+$SYSBIN = '/usr/bin' ; 
+
+ 
+
+$PERL = $SYSBIN.'/perl' ;  OR  /usr/bin/pearl; 
+
+ 
+
+$ZIP = $SYSBIN.'/gzip' ;   OR  /usr/bin/gzip 
+
+$UNZIP = $SYSBIN.'/gunzip' ; OR /usr/bin/gunzip 
+
+ 
+
+$LOG = $PATH.$LOGDIR ; 
+
+$CLOG = $CPATH.$LOGDIR ; 
+
+ 
+
+$QUAL = '_rep' ;                  # Transaction tbl name extention 
+
+$UNLOADSQL = 'unload' ;           # SQL file name 
+
+$LOADSQL = 'load' ; 
+
+$DFILE = 'date' ; 
+
+$GO = 'goahead' ; 
+
+$OUTREPLPGM = 'outrepl' ; 
+ 
+---Central Server-- 
+
+$ROSREPLPGM = 'rosrepl' ; 
+
+$ROSREPLOPPGM = 'rosreplop' ; 
+
+ 
+
+$ZIPEXT = '.gz' ; 
+
+$SQLEXT = '.sql' ; 
+
+$LOGEXT = '.log' ; 
+
+ 
+
+$GOAHEAD = $PATH.$DATA.'/'.$GO ;             # goahed file 
+
+$PDATEDIR = $PATH.$DATA.'/' ;                # Previous dates 
+
+$NDATEDIR = $PATH.$STAGE.'/' ;               # New dates 
+
+$CDATEDIR = $CPATH.$STAGE.'/' ;              # Central server date file 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+3a. List of tables which will be replicated 
+
+claim 
+
+claim_bulletin 
+
+claim_charges 
+
+claim_complaint 
+
+claim_cur_status 
+
+claim_deleted 
+
+claim_euro 
+
+claim_fail_code 
+
+claim_license_num 
+
+claim_link 
+
+claim_mfg_date 
+
+claim_non_reman 
+
+claim_operation 
+
+claim_promise 
+
+claim_scrap 
+
+claim_trouble 
+
+inventory 
+
+inventory_owed 
+
+pc_info 
+
+piece_part_shipment 
+
+piece_part_ship_detail 
+
+pre_exc_order 
+
+pre_exc_shipment 
+
+receipt_cust 
+
+receipt_cust_xfer 
+
+receipt_dealer 
+
+receipt_detail 
+
+receipt_detail_xfer 
+
+sdo_detail 
+
+shipment 
+
+shipment_detail 
+
+site_parameters 
+
+spec_proj_site_data 
+
+userid 
+
+userid_function_cde 
+
+ 
+
+Script will calls following subroutine in perl script to complete the replication process 
+
+ 
+
+3b. &load_tables - Load the _rep tables from the above mentioned table list 
+
+3c. &get_date - Get the date 
+
+3d. &backup_files - Move the previous run files from /essn/aer/repl/data to /essn/aer/repl/backup 
+
+3e. &create_sql - Create the sql script to load the data from _rep tables to files in /essn/aer/repl/script 
+
+3f. &unload_tables - Insert the data from _rep table to files in /essn/aer/repl/stage 
+
+3g. &move_data - Compress the files in /essn/aer/repl/stage directory. Move the file from /essn/aer/repl/stage to /essn/aer/repl/data 
